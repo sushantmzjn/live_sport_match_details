@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
+import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/foul_card.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/score_view.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/statistics.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/substitutes.dart';
+import 'package:sports_app/features/football/presentation/screen/team_info_view.dart';
 
 class FootballMatchDetailView extends StatelessWidget {
   final FootballLiveScoreResponse footballLiveScoreResponse;
@@ -32,23 +35,34 @@ class FootballMatchDetailView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Flexible(
-                child: Column(
-                  children: [
-                    footballLiveScoreResponse.home_team_logo.trim().isEmpty
-                        ? Image.asset(
-                            'assets/icons/football.png',
-                            height: 80.w,
-                            width: 80.w,
-                          )
-                        : SizedBox(
-                            height: 80.w,
-                            width: 80.w,
-                            child: Image.network(
-                              footballLiveScoreResponse.home_team_logo,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(CupertinoPageRoute(builder: (context) {
+                      return TeamInfoView(
+                        teamId: footballLiveScoreResponse.home_team_key,
+                        footballLiveScoreResponse: footballLiveScoreResponse,
+                      );
+                    }));
+                  },
+                  child: Column(
+                    children: [
+                      footballLiveScoreResponse.home_team_logo.trim().isEmpty
+                          ? Image.asset(
+                              'assets/icons/football.png',
+                              height: 80.w,
+                              width: 80.w,
+                            )
+                          : SizedBox(
+                              height: 80.w,
+                              width: 80.w,
+                              child: Image.network(
+                                footballLiveScoreResponse.home_team_logo,
+                              ),
                             ),
-                          ),
-                    Text(footballLiveScoreResponse.event_home_team),
-                  ],
+                      Text(footballLiveScoreResponse.event_home_team),
+                    ],
+                  ),
                 ),
               ),
               Flexible(
@@ -69,19 +83,33 @@ class FootballMatchDetailView extends StatelessWidget {
                 ),
               ),
               Flexible(
-                child: Column(
-                  children: [
-                    footballLiveScoreResponse.away_team_logo.trim().isEmpty
-                        ? Image.asset('assets/icons/football.png')
-                        : SizedBox(
-                            height: 80.w,
-                            width: 80.w,
-                            child: Image.network(
-                              footballLiveScoreResponse.away_team_logo,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(CupertinoPageRoute(builder: (context) {
+                      return TeamInfoView(
+                        teamId: footballLiveScoreResponse.away_team_key,
+                        footballLiveScoreResponse: footballLiveScoreResponse,
+                      );
+                    }));
+                  },
+                  child: Column(
+                    children: [
+                      footballLiveScoreResponse.away_team_logo.trim().isEmpty
+                          ? Image.asset(
+                              height: 80.w,
+                              width: 80.w,
+                              'assets/icons/football.png')
+                          : SizedBox(
+                              height: 80.w,
+                              width: 80.w,
+                              child: Image.network(
+                                footballLiveScoreResponse.away_team_logo,
+                              ),
                             ),
-                          ),
-                    Text(footballLiveScoreResponse.event_away_team),
-                  ],
+                      Text(footballLiveScoreResponse.event_away_team),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -92,7 +120,7 @@ class FootballMatchDetailView extends StatelessWidget {
           ),
           Expanded(
             child: DefaultTabController(
-              length: 3,
+              length: 4,
               child: Column(
                 children: [
                   TabBar(
@@ -117,6 +145,9 @@ class FootballMatchDetailView extends StatelessWidget {
                       Tab(
                         text: 'Substitutes',
                       ),
+                      Tab(
+                        text: 'Card',
+                      ),
                     ],
                   ),
                   Expanded(
@@ -124,6 +155,7 @@ class FootballMatchDetailView extends StatelessWidget {
                       StatisticsView(footballData: footballLiveScoreResponse),
                       ScoreView(footballData: footballLiveScoreResponse),
                       SubstitutesView(footballData: footballLiveScoreResponse),
+                      FoulCard(footballData: footballLiveScoreResponse),
                     ]),
                   )
                 ],

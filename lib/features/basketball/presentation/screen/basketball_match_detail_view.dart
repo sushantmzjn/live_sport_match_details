@@ -70,7 +70,10 @@ class BasketballMatchDetailView extends StatelessWidget {
                 child: Column(
                   children: [
                     liveScoreResponse.event_away_team_logo.trim().isEmpty
-                        ? Image.asset('assets/icons/basketball.png')
+                        ? Image.asset(
+                            height: 80.w,
+                            width: 80.w,
+                            'assets/icons/basketball.png')
                         : SizedBox(
                             height: 80.w,
                             width: 80.w,

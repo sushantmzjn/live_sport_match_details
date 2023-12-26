@@ -14,7 +14,6 @@ class BasketballStatistics extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -28,7 +27,7 @@ class BasketballStatistics extends StatelessWidget {
           ),
           Expanded(
             child: matchStatistics.statistics.isEmpty
-                ? Text('No Data Available', style: txtStyle1)
+                ? Center(child: Text('No Data Available', style: txtStyle1))
                 : ListView.builder(
                     shrinkWrap: true,
                     itemCount: matchStatistics.statistics.length,

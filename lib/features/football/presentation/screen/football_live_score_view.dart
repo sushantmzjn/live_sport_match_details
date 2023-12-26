@@ -103,6 +103,8 @@ class FootballLiveScoreView extends ConsumerWidget {
                                     children: [
                                       scoreData.away_team_logo.trim().isEmpty
                                           ? Image.asset(
+                                              height: 40.w,
+                                              width: 40.w,
                                               'assets/icons/football.png')
                                           : SizedBox(
                                               height: 40.w,

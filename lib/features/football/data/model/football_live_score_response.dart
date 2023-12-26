@@ -13,6 +13,8 @@ class FootballLiveScoreResponse {
   String away_team_logo;
   String event_home_formation;
   String event_away_formation;
+  int home_team_key;
+  int away_team_key;
   List<GoalScorers> goalscorers;
   List<Statistics> statistics;
   List<Cards> cards;
@@ -36,6 +38,8 @@ class FootballLiveScoreResponse {
       required this.statistics,
       required this.substitutes,
       required this.cards,
+      required this.home_team_key,
+      required this.away_team_key,
       required this.msg});
 
   factory FootballLiveScoreResponse.fromJson(Map<String, dynamic> json) {
@@ -53,6 +57,8 @@ class FootballLiveScoreResponse {
       away_team_logo: json['away_team_logo'] ?? '',
       event_home_formation: json['event_home_formation'] ?? '',
       event_away_formation: json['event_away_formation'] ?? '',
+      home_team_key: json['home_team_key'] ?? 0,
+      away_team_key: json['away_team_key'] ?? 0,
       goalscorers: (json['goalscorers']) != null
           ? List<GoalScorers>.from(
               json['goalscorers'].map((e) => GoalScorers.fromJson(e)))
