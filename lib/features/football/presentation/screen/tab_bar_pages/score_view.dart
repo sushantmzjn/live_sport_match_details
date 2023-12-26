@@ -20,80 +20,85 @@ class ScoreView extends StatelessWidget {
                 itemCount: footballData.goalscorers.length,
                 itemBuilder: (context, index) {
                   final scoreData = footballData.goalscorers[index];
-                  return Card(
-                    elevation: 3.w,
-                    color: Colors.white,
-                    surfaceTintColor: Colors.white,
-                    child: Column(children: [
-                      if (scoreData.home_scorer.trim().isNotEmpty)
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.w, horizontal: 12.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(scoreData.home_scorer),
-                                    SizedBox(width: 10.w),
-                                    Text('${scoreData.time} mins'),
-                                  ],
-                                ),
-                              ),
-                              if (scoreData.home_assist.trim().isNotEmpty)
-                                Divider(
-                                  color: Colors.black.withOpacity(0.2),
-                                  thickness: 0.8.w,
-                                ),
-                              if (scoreData.home_assist.trim().isNotEmpty)
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 2.w),
+                    child: Card(
+                      elevation: 3.w,
+                      color: Colors.white,
+                      surfaceTintColor: Colors.white,
+                      child: Column(children: [
+                        if (scoreData.home_scorer.trim().isNotEmpty)
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8.w, horizontal: 12.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 10.w),
-                                  child: Text(
-                                      'Assist : ${scoreData.home_assist}',
-                                      style: assistStyle),
-                                )
-                            ],
+                                  child: Row(
+                                    children: [
+                                      Text(scoreData.home_scorer),
+                                      SizedBox(width: 10.w),
+                                      Text('${scoreData.time} mins'),
+                                    ],
+                                  ),
+                                ),
+                                if (scoreData.home_assist.trim().isNotEmpty)
+                                  Divider(
+                                    color: Colors.black.withOpacity(0.2),
+                                    thickness: 0.8.w,
+                                  ),
+                                if (scoreData.home_assist.trim().isNotEmpty)
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.w),
+                                    child: Text(
+                                        'Assist : ${scoreData.home_assist}',
+                                        style: assistStyle),
+                                  )
+                              ],
+                            ),
                           ),
-                        ),
-                      if (scoreData.away_scorer.trim().isNotEmpty)
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.w, horizontal: 12.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(scoreData.away_scorer),
-                                    SizedBox(width: 10.w),
-                                    Text('${scoreData.time} mins'),
-                                  ],
-                                ),
-                              ),
-                              if (scoreData.away_assist.trim().isNotEmpty)
-                                Divider(
-                                  color: Colors.black.withOpacity(0.2),
-                                  thickness: 0.8.w,
-                                ),
-                              if (scoreData.away_assist.trim().isNotEmpty)
+                        if (scoreData.away_scorer.trim().isNotEmpty)
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8.w, horizontal: 12.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 10.w),
-                                  child: Text(
-                                      'Assist : ${scoreData.away_assist}',
-                                      style: assistStyle),
-                                )
-                            ],
+                                  child: Row(
+                                    children: [
+                                      Text(scoreData.away_scorer),
+                                      SizedBox(width: 10.w),
+                                      Text('${scoreData.time} mins'),
+                                    ],
+                                  ),
+                                ),
+                                if (scoreData.away_assist.trim().isNotEmpty)
+                                  Divider(
+                                    color: Colors.black.withOpacity(0.2),
+                                    thickness: 0.8.w,
+                                  ),
+                                if (scoreData.away_assist.trim().isNotEmpty)
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.w),
+                                    child: Text(
+                                        'Assist : ${scoreData.away_assist}',
+                                        style: assistStyle),
+                                  )
+                              ],
+                            ),
                           ),
-                        ),
-                    ]),
+                      ]),
+                    ),
                   );
                 }),
           );

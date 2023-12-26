@@ -121,7 +121,7 @@ class BasketballMatchDetailView extends StatelessWidget {
                     child: TabBarView(children: [
                       BasketballStatistics(matchStatistics: liveScoreResponse),
                       BasketballScores(matchScores: liveScoreResponse),
-                      Text('SubstitutesView'),
+                      const Text('SubstitutesView'),
                     ]),
                   )
                 ],

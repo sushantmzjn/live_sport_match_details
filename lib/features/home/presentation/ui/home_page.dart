@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_live_score_view.dart';
 import 'package:sports_app/features/football/presentation/screen/football_live_score_view.dart';
