@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 import 'package:sports_app/features/football/presentation/provider/team_info_provider.dart';
+import 'package:sports_app/features/football/presentation/screen/player_info_view.dart';
 
 class TeamInfoView extends ConsumerWidget {
   final FootballLiveScoreResponse footballLiveScoreResponse;
@@ -64,6 +66,7 @@ class TeamInfoView extends ConsumerWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 6.w),
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -92,63 +95,74 @@ class TeamInfoView extends ConsumerWidget {
                                       return Padding(
                                         padding:
                                             EdgeInsets.symmetric(vertical: 3.w),
-                                        child: Card(
-                                          color: Colors.white,
-                                          surfaceTintColor: Colors.white,
-                                          elevation: 2.w,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(10.w),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Flexible(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(playerInfo
-                                                          .player_name),
-                                                      Text(
-                                                          'Age : ${playerInfo.player_age}'),
-                                                      Text(
-                                                          'Player Type : ${playerInfo.player_type}'),
-                                                      Text(
-                                                          'Player Number : ${playerInfo.player_number}'),
-                                                      if (playerInfo
-                                                          .player_rating
-                                                          .trim()
-                                                          .isNotEmpty)
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                CupertinoPageRoute(
+                                                    builder: (context) {
+                                              return PlayerInfoView(
+                                                  playerKey:
+                                                      playerInfo.player_key);
+                                            }));
+                                          },
+                                          child: Card(
+                                            color: Colors.white,
+                                            surfaceTintColor: Colors.white,
+                                            elevation: 2.w,
+                                            child: Padding(
+                                              padding: EdgeInsets.all(10.w),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(playerInfo
+                                                            .player_name),
                                                         Text(
-                                                            'Player Rating : ${playerInfo.player_rating}'),
-                                                    ],
+                                                            'Age : ${playerInfo.player_age}'),
+                                                        Text(
+                                                            'Player Type : ${playerInfo.player_type}'),
+                                                        Text(
+                                                            'Player Number : ${playerInfo.player_number}'),
+                                                        if (playerInfo
+                                                            .player_rating
+                                                            .trim()
+                                                            .isNotEmpty)
+                                                          Text(
+                                                              'Player Rating : ${playerInfo.player_rating}'),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                                playerInfo.player_image
-                                                        .trim()
-                                                        .isEmpty
-                                                    ? CircleAvatar(
-                                                        radius: 34.w,
-                                                        backgroundImage:
-                                                            const AssetImage(
-                                                                'assets/icons/football.png'),
-                                                      )
-                                                    : CircleAvatar(
-                                                        radius: 34.w,
-                                                        backgroundImage:
-                                                            NetworkImage(
-                                                          playerInfo
-                                                              .player_image,
-                                                        ),
-                                                      )
-                                              ],
+                                                  playerInfo.player_image
+                                                          .trim()
+                                                          .isEmpty
+                                                      ? CircleAvatar(
+                                                          radius: 34.w,
+                                                          backgroundImage:
+                                                              const AssetImage(
+                                                                  'assets/icons/football.png'),
+                                                        )
+                                                      : CircleAvatar(
+                                                          radius: 34.w,
+                                                          backgroundImage:
+                                                              NetworkImage(
+                                                            playerInfo
+                                                                .player_image,
+                                                          ),
+                                                        )
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

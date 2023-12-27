@@ -40,6 +40,7 @@ class BasketballLiveScoreView extends ConsumerWidget {
             : basketballLiveScore.isLoad
                 ? const CustomCircularLoading()
                 : ListView.builder(
+                    key: const PageStorageKey<String>('basketball date'),
                     itemCount: basketballLiveScore.basketballLiveScore.length,
                     itemBuilder: (ctx, index) {
                       final scoreData =

@@ -93,7 +93,7 @@ class BasketballMatchDetailView extends StatelessWidget {
           ),
           Expanded(
             child: DefaultTabController(
-              length: 3,
+              length: 2,
               child: Column(
                 children: [
                   TabBar(
@@ -115,16 +115,12 @@ class BasketballMatchDetailView extends StatelessWidget {
                       Tab(
                         text: 'Scores',
                       ),
-                      Tab(
-                        text: 'Substitutes',
-                      ),
                     ],
                   ),
                   Expanded(
                     child: TabBarView(children: [
                       BasketballStatistics(matchStatistics: liveScoreResponse),
                       BasketballScores(matchScores: liveScoreResponse),
-                      const Text('SubstitutesView'),
                     ]),
                   )
                 ],
