@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:sports_app/features/home/presentation/ui/home_page.dart';
+import 'package:sports_app/features/onboarding_page/presentation/ui/onboarding_screens.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('board');
+  debugPrint(Hive.box('board').isEmpty.toString());
   //lock orientation
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
           ),
-          home: const HomePage(),
+          home: const OnBoardingScreens(),
         );
       },
     );
