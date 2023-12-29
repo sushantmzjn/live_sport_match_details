@@ -36,6 +36,14 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.white,
+              surfaceTintColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.horizontal(
+                right: Radius.circular(25.w),
+              )),
+            ),
           ),
           home: ValueListenableBuilder(
               valueListenable: Hive.box('board').listenable(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/features/baseball/presentation/screen/baseball_live_score_view.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_live_score_view.dart';
 import 'package:sports_app/features/football/presentation/screen/football_live_score_view.dart';
 import 'package:sports_app/features/home/presentation/widgets/bottom_icon_tile.dart';
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const FootballLiveScoreView(),
     const BasketballLiveScoreView(),
+    const BaseballLiveScoreView(),
   ];
 
   @override
@@ -60,6 +62,16 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   setState(() {
                     selectedIndex = 1;
+                  });
+                }),
+            BottomIconTile(
+                iconPath: 'assets/icons/baseball.png',
+                labelName: 'Baseball',
+                iconColor: selectedIndex == 2 ? Colors.black : Colors.grey,
+                labelColor: selectedIndex == 2 ? Colors.black : Colors.grey,
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 2;
                   });
                 }),
           ],

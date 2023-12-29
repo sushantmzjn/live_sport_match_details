@@ -10,7 +10,7 @@ class ThirdPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/icons/baseball.png',
+          'assets/icons/onboard_baseball.png',
           height: 400.h,
         ),
         Padding(
