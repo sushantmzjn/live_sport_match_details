@@ -37,93 +37,115 @@ class FootballLiveScoreView extends ConsumerWidget {
           ? Center(child: Text(liveScoreData.errorMessage))
           : liveScoreData.isLoad
               ? const CustomCircularLoading()
-              : ListView.builder(
-                  key: const PageStorageKey<String>('football date'),
-                  itemCount: liveScoreData.footballLiveScore.length,
-                  itemBuilder: (context, index) {
-                    final scoreData = liveScoreData.footballLiveScore[index];
-                    return Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 5.w, horizontal: 12.w),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(CupertinoPageRoute(builder: (context) {
-                            return FootballMatchDetailView(
-                                footballLiveScoreResponse: scoreData);
-                          }));
-                        },
-                        child: Card(
-                          color: Colors.white,
-                          surfaceTintColor: Colors.white,
-                          elevation: 3.w,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    children: [
-                                      scoreData.home_team_logo.trim().isEmpty
-                                          ? Image.asset(
-                                              height: 40.w,
-                                              width: 40.w,
-                                              'assets/icons/football.png')
-                                          : SizedBox(
-                                              height: 40.w,
-                                              width: 40.w,
-                                              child: Image.network(
-                                                scoreData.home_team_logo,
+              : RawScrollbar(
+                  thumbColor: Colors.black.withOpacity(0.7),
+                  crossAxisMargin: 2,
+                  fadeDuration: const Duration(milliseconds: 200),
+                  radius: Radius.circular(60.w),
+                  thickness: 5.w,
+                  child: ListView.builder(
+                    key: const PageStorageKey<String>('football date'),
+                    itemCount: liveScoreData.footballLiveScore.length,
+                    itemBuilder: (context, index) {
+                      final scoreData = liveScoreData.footballLiveScore[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5.w, horizontal: 12.w),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(CupertinoPageRoute(builder: (context) {
+                              return FootballMatchDetailView(
+                                  footballLiveScoreResponse: scoreData);
+                            }));
+                          },
+                          child: Card(
+                            color: Colors.white,
+                            surfaceTintColor: Colors.white,
+                            elevation: 3.w,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12.w),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Flexible(
+                                    child: Column(
+                                      children: [
+                                        scoreData.home_team_logo.trim().isEmpty
+                                            ? Image.asset(
+                                                height: 40.w,
+                                                width: 40.w,
+                                                'assets/icons/football.png')
+                                            : SizedBox(
+                                                height: 40.w,
+                                                width: 40.w,
+                                                child: Image.network(
+                                                  scoreData.home_team_logo,
+                                                ),
                                               ),
-                                            ),
-                                      Text(scoreData.event_home_team),
-                                    ],
+                                        SizedBox(
+                                            width: 60.w,
+                                            child: Text(
+                                              scoreData.event_home_team,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            )),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        scoreData.event_final_result,
-                                        style: TextStyle(fontSize: 16.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      Text(
-                                        'Time : ${scoreData.event_status}',
-                                        style: TextStyle(fontSize: 10.sp),
-                                      )
-                                    ],
+                                  Flexible(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          scoreData.event_final_result,
+                                          style: TextStyle(fontSize: 16.sp),
+                                        ),
+                                        SizedBox(
+                                          height: 10.h,
+                                        ),
+                                        Text(
+                                          'Time : ${scoreData.event_status}',
+                                          style: TextStyle(fontSize: 10.sp),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    children: [
-                                      scoreData.away_team_logo.trim().isEmpty
-                                          ? Image.asset(
-                                              height: 40.w,
-                                              width: 40.w,
-                                              'assets/icons/football.png')
-                                          : SizedBox(
-                                              height: 40.w,
-                                              width: 40.w,
-                                              child: Image.network(
-                                                scoreData.away_team_logo,
+                                  Flexible(
+                                    child: Column(
+                                      children: [
+                                        scoreData.away_team_logo.trim().isEmpty
+                                            ? Image.asset(
+                                                height: 40.w,
+                                                width: 40.w,
+                                                'assets/icons/football.png')
+                                            : SizedBox(
+                                                height: 40.w,
+                                                width: 40.w,
+                                                child: Image.network(
+                                                  scoreData.away_team_logo,
+                                                ),
                                               ),
-                                            ),
-                                      Text(scoreData.event_away_team),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                        SizedBox(
+                                            width: 60.w,
+                                            child: Text(
+                                              scoreData.event_away_team,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            )),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
     );
   }

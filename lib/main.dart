@@ -10,6 +10,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('board');
+  // await Hive.box('board').clear();
+
   debugPrint(Hive.box('board').isEmpty.toString());
   //lock orientation
   SystemChrome.setPreferredOrientations([
@@ -37,7 +39,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
           ),
-          home: const OnBoardingScreens(),
+          home: ValueListenableBuilder(
+              valueListenable: Hive.box('board').listenable(),
+              builder: (context, box, child) =>
+                  box.isEmpty ? const OnBoardingScreens() : const HomePage()),
         );
       },
     );

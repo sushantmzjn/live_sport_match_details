@@ -39,101 +39,125 @@ class BasketballLiveScoreView extends ConsumerWidget {
               )
             : basketballLiveScore.isLoad
                 ? const CustomCircularLoading()
-                : ListView.builder(
-                    key: const PageStorageKey<String>('basketball date'),
-                    itemCount: basketballLiveScore.basketballLiveScore.length,
-                    itemBuilder: (ctx, index) {
-                      final scoreData =
-                          basketballLiveScore.basketballLiveScore[index];
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 5.w, horizontal: 12.w),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(CupertinoPageRoute(builder: (context) {
-                              return BasketballMatchDetailView(
-                                liveScoreResponse: scoreData,
-                              );
-                            }));
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            surfaceTintColor: Colors.white,
-                            elevation: 3.w,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 12.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Flexible(
-                                    child: Column(
-                                      children: [
-                                        scoreData.event_home_team_logo
-                                                .trim()
-                                                .isEmpty
-                                            ? Image.asset(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                'assets/icons/basketball.png')
-                                            : SizedBox(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                child: Image.network(
-                                                  scoreData
-                                                      .event_home_team_logo,
-                                                ),
-                                              ),
-                                        Text(scoreData.event_home_team),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          scoreData.event_final_result,
-                                          style: TextStyle(fontSize: 16.sp),
+                : RawScrollbar(
+                    thumbColor: Colors.black.withOpacity(0.7),
+                    crossAxisMargin: 2,
+                    fadeDuration: const Duration(milliseconds: 200),
+                    radius: Radius.circular(60.w),
+                    thickness: 5.w,
+                    child: ListView.builder(
+                        key: const PageStorageKey<String>('basketball date'),
+                        itemCount:
+                            basketballLiveScore.basketballLiveScore.length,
+                        itemBuilder: (ctx, index) {
+                          final scoreData =
+                              basketballLiveScore.basketballLiveScore[index];
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 5.w, horizontal: 12.w),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                    CupertinoPageRoute(builder: (context) {
+                                  return BasketballMatchDetailView(
+                                    liveScoreResponse: scoreData,
+                                  );
+                                }));
+                              },
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.white,
+                                elevation: 3.w,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 12.w),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            scoreData.event_home_team_logo
+                                                    .trim()
+                                                    .isEmpty
+                                                ? Image.asset(
+                                                    height: 40.w,
+                                                    width: 40.w,
+                                                    'assets/icons/basketball.png')
+                                                : SizedBox(
+                                                    height: 40.w,
+                                                    width: 40.w,
+                                                    child: Image.network(
+                                                      scoreData
+                                                          .event_home_team_logo,
+                                                    ),
+                                                  ),
+                                            SizedBox(
+                                                width: 60.w,
+                                                child: Text(
+                                                  scoreData.event_home_team,
+                                                  textAlign: TextAlign.center,
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                )),
+                                          ],
                                         ),
-                                        SizedBox(
-                                          height: 10.h,
+                                      ),
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              scoreData.event_final_result,
+                                              style: TextStyle(fontSize: 16.sp),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              'Time : ${scoreData.event_status}',
+                                              style: TextStyle(fontSize: 10.sp),
+                                            )
+                                          ],
                                         ),
-                                        Text(
-                                          'Time : ${scoreData.event_status}',
-                                          style: TextStyle(fontSize: 10.sp),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: [
-                                        scoreData.event_away_team_logo
-                                                .trim()
-                                                .isEmpty
-                                            ? Image.asset(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                'assets/icons/basketball.png')
-                                            : SizedBox(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                child: Image.network(
-                                                  scoreData
-                                                      .event_away_team_logo,
-                                                ),
+                                      ),
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            scoreData.event_away_team_logo
+                                                    .trim()
+                                                    .isEmpty
+                                                ? Image.asset(
+                                                    height: 40.w,
+                                                    width: 40.w,
+                                                    'assets/icons/basketball.png')
+                                                : SizedBox(
+                                                    height: 40.w,
+                                                    width: 40.w,
+                                                    child: Image.network(
+                                                      scoreData
+                                                          .event_away_team_logo,
+                                                    ),
+                                                  ),
+                                            SizedBox(
+                                              width: 60.w,
+                                              child: Text(
+                                                scoreData.event_away_team,
+                                                textAlign: TextAlign.center,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                        Text(scoreData.event_away_team),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    }));
+                          );
+                        }),
+                  ));
   }
 }

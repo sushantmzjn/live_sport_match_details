@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:sports_app/features/home/presentation/ui/home_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/first_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/second_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/third_page.dart';
@@ -60,8 +61,11 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
                     ElevatedButton(
                       onPressed: () async {
                         if (onLastPage) {
-                          await Hive.box('board').clear();
+                          // await Hive.box('board').clear();
                           // await Hive.box('board').put('key', true);
+                          Navigator.of(context).pushReplacement(
+                              CupertinoPageRoute(
+                                  builder: (context) => const HomePage()));
                         } else {
                           controller.nextPage(
                               duration: const Duration(milliseconds: 500),
