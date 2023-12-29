@@ -10,8 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('board');
-  // await Hive.box('board').clear();
-
   debugPrint(Hive.box('board').isEmpty.toString());
   //lock orientation
   SystemChrome.setPreferredOrientations([

@@ -16,7 +16,14 @@ class OnBoardingScreens extends StatefulWidget {
 }
 
 class _OnBoardingScreensState extends State<OnBoardingScreens> {
-  PageController controller = PageController(initialPage: 0);
+  late PageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(initialPage: 0);
+  }
+
   bool onLastPage = false;
   static final List<Widget> onBoardScreens = [
     const FirstPage(),
@@ -40,6 +47,19 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
               },
               children: onBoardScreens,
             ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top / 0.7),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Sports App',
+                    style: TextStyle(fontSize: 26.sp),
+                  ),
+                ],
+              ),
+            ),
             Positioned(
               bottom: 30.w,
               left: 20.w,
@@ -61,15 +81,15 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
                     ElevatedButton(
                       onPressed: () async {
                         if (onLastPage) {
-                          // await Hive.box('board').clear();
-                          // await Hive.box('board').put('key', true);
-                          Navigator.of(context).pushReplacement(
-                              CupertinoPageRoute(
-                                  builder: (context) => const HomePage()));
+                          await Hive.box('board').clear();
+                          await Hive.box('board').put('key', true);
+                          // Navigator.of(context).pushReplacement(
+                          //     CupertinoPageRoute(
+                          //         builder: (context) => const HomePage()));
                         } else {
                           controller.nextPage(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOutCubic);
+                              curve: Curves.easeInOut);
                         }
                       },
                       style: ElevatedButton.styleFrom(
