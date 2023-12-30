@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BaseballLiveScoreView extends ConsumerWidget {
-  const BaseballLiveScoreView({super.key});
+class TennisLiveScoreView extends ConsumerWidget {
+  const TennisLiveScoreView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Baseball Live Matches',
+          'Tennis Live Matches',
           style: TextStyle(fontSize: 22.sp, letterSpacing: 1.0),
         ),
         actions: [
