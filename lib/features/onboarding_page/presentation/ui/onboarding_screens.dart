@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:sports_app/features/home/presentation/ui/home_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/first_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/second_page.dart';
 import 'package:sports_app/features/onboarding_page/presentation/ui/onboard_screen_pages/third_page.dart';
