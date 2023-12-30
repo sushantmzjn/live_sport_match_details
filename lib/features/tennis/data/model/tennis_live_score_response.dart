@@ -2,83 +2,124 @@
 
 class TennisLiveScoreResponse {
   int event_key;
-  int home_team_key;
-  int away_team_key;
-  String event_home_team;
-  String event_away_team;
-  String event_service_home;
-  String event_service_away;
-  String event_home_final_result;
-  String event_away_final_result;
-  String event_home_rr;
-  String event_away_rr;
+  int first_player_key;
+  int second_player_key;
+  String event_first_player;
+  String event_second_player;
+  String event_final_result;
+  String event_game_result;
+  String event_serve;
+  String event_winner;
   String event_status;
-  String event_status_info;
+  String country_name;
   String league_name;
   int league_key;
   String league_round;
   String league_season;
   String event_live;
-  String event_type;
-  String event_toss;
-  String event_man_of_match;
-  String event_stadium;
-  String event_home_team_logo;
-  String event_away_team_logo;
+  String event_first_player_logo;
+  String event_second_player_logo;
+  List<PointByPoint> pointbypoint;
 
-  TennisLiveScoreResponse({
-    required this.event_key,
-    required this.home_team_key,
-    required this.away_team_key,
-    required this.event_home_team,
-    required this.event_away_team,
-    required this.event_service_home,
-    required this.event_service_away,
-    required this.event_home_final_result,
-    required this.event_away_final_result,
-    required this.event_home_rr,
-    required this.event_away_rr,
-    required this.event_status,
-    required this.event_status_info,
-    required this.league_name,
-    required this.league_key,
-    required this.league_round,
-    required this.league_season,
-    required this.event_live,
-    required this.event_type,
-    required this.event_toss,
-    required this.event_man_of_match,
-    required this.event_stadium,
-    required this.event_home_team_logo,
-    required this.event_away_team_logo,
-  });
+  TennisLiveScoreResponse(
+      {required this.event_key,
+      required this.country_name,
+      required this.event_final_result,
+      required this.event_first_player,
+      required this.event_second_player,
+      required this.event_first_player_logo,
+      required this.event_game_result,
+      required this.event_live,
+      required this.event_second_player_logo,
+      required this.event_serve,
+      required this.event_status,
+      required this.event_winner,
+      required this.first_player_key,
+      required this.league_key,
+      required this.league_name,
+      required this.league_round,
+      required this.league_season,
+      required this.second_player_key,
+      required this.pointbypoint});
 
   factory TennisLiveScoreResponse.fromJson(Map<String, dynamic> json) {
     return TennisLiveScoreResponse(
-      event_key: json['event_key'],
-      home_team_key: json['home_team_key'],
-      away_team_key: json['away_team_key'],
-      event_home_team: json['event_home_team'],
-      event_away_team: json['event_away_team'],
-      event_service_home: json['event_service_home'],
-      event_service_away: json['event_service_away'],
-      event_home_final_result: json['event_home_final_result'],
-      event_away_final_result: json['event_away_final_result'],
-      event_home_rr: json['event_home_rr'],
-      event_away_rr: json['event_away_rr'],
-      event_status: json['event_status'],
-      event_status_info: json['event_status_info'],
-      league_name: json['league_name'],
-      league_key: json['league_key'],
-      league_round: json['league_round'],
-      league_season: json['league_season'],
-      event_live: json['event_live'],
-      event_type: json['event_type'],
-      event_toss: json['event_toss'],
-      event_man_of_match: json['event_man_of_match'],
-      event_stadium: json['event_stadium'],
-      event_home_team_logo: json['event_home_team_logo'],
-      event_away_team_logo: json['event_away_team_logo'],
+        event_key: json['event_key'] ?? 0,
+        country_name: json['country_name'] ?? '',
+        event_final_result: json['event_final_result'] ?? '',
+        event_first_player: json['event_first_player'] ?? '',
+        event_second_player: json['event_second_player'] ?? '',
+        event_first_player_logo: json['event_first_player_logo'] ?? '',
+        event_game_result: json['event_game_result'] ?? '',
+        event_live: json['event_live'] ?? '',
+        event_second_player_logo: json['event_second_player_logo'] ?? '',
+        event_serve: json['event_serve'] ?? '',
+        event_status: json['event_status'] ?? '',
+        event_winner: json['event_winner'] ?? '',
+        first_player_key: json['first_player_key'] ?? 0,
+        league_key: json['league_key'] ?? 0,
+        league_name: json['league_name'] ?? '',
+        league_round: json['league_round'] ?? '',
+        league_season: json['league_season'] ?? '',
+        second_player_key: json['second_player_key'] ?? 0,
+        pointbypoint: (json['pointbypoint']) != null
+            ? List<PointByPoint>.from(
+                json['pointbypoint'].map((e) => PointByPoint.fromJson(e)))
+            : []);
+  }
+}
+
+class PointByPoint {
+  String set_number;
+  String number_game;
+  String player_served;
+  String serve_winner;
+  String serve_lost;
+  String score;
+  List<Points> points;
+
+  PointByPoint({
+    required this.number_game,
+    required this.player_served,
+    required this.points,
+    required this.score,
+    required this.serve_lost,
+    required this.serve_winner,
+    required this.set_number,
+  });
+  factory PointByPoint.fromJson(Map<String, dynamic> json) {
+    return PointByPoint(
+      number_game: json['number_game'] ?? '',
+      player_served: json['player_served'] ?? '',
+      points: (json['points']) != null
+          ? List<Points>.from(json['points'].map((e) => Points.fromJson(e)))
+          : [],
+      score: json['score'] ?? '',
+      serve_lost: json['serve_lost'] ?? '',
+      serve_winner: json['serve_winner'] ?? '',
+      set_number: json['set_number'] ?? '',
     );
+  }
+}
+
+class Points {
+  String number_point;
+  String score;
+  String set_point;
+  String match_point;
+
+  Points({
+    required this.match_point,
+    required this.number_point,
+    required this.score,
+    required this.set_point,
+  });
+
+  factory Points.fromJson(Map<String, dynamic> json) {
+    return Points(
+        match_point: json['match_point'] ?? '',
+        number_point: json['number_point'] ?? '',
+        score: json['score'] ?? '',
+        set_point: json['set_point'] ?? '');
   }
 }
