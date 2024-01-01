@@ -43,6 +43,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_spinkit: ^5.2.0
   flutter_native_splash: ^2.3.8
+  animations: ^2.0.10
 
 #splash screen
 flutter_native_splash:

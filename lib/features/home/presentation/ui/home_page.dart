@@ -4,6 +4,7 @@ import 'package:sports_app/features/tennis/presentation/screen/tennis_live_score
 import 'package:sports_app/features/basketball/presentation/screen/basketball_live_score_view.dart';
 import 'package:sports_app/features/football/presentation/screen/football_live_score_view.dart';
 import 'package:sports_app/features/home/presentation/widgets/bottom_icon_tile.dart';
+import 'package:animations/animations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +24,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(selectedIndex),
+      body: PageTransitionSwitcher(
+          transitionBuilder: (Widget child, Animation<double> primaryAnimation,
+              Animation<double> secondaryAnimation) {
+            return SharedAxisTransition(
+              animation: primaryAnimation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+              child: child,
+            );
+          },
+          child: _widgetOptions.elementAt(selectedIndex)),
       bottomNavigationBar: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(vertical: 0.w),
