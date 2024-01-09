@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 
-class ScoreView extends StatelessWidget {
+class ScoreView extends ConsumerWidget {
   final FootballLiveScoreResponse footballData;
   ScoreView({super.key, required this.footballData});
 
@@ -10,7 +12,9 @@ class ScoreView extends StatelessWidget {
   final assistStyle = const TextStyle(color: Colors.redAccent);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final themeData = ref.watch(themeProvider);
+
     return footballData.goalscorers.isEmpty
         ? const Center(child: Text('No Data Available'))
         : Padding(
@@ -24,8 +28,8 @@ class ScoreView extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 2.w),
                     child: Card(
                       elevation: 3.w,
-                      color: Colors.white,
-                      surfaceTintColor: Colors.white,
+                      color: themeData.themeData.colorScheme.primary,
+                      surfaceTintColor: themeData.themeData.colorScheme.primary,
                       child: Column(children: [
                         if (scoreData.home_scorer.trim().isNotEmpty)
                           Padding(

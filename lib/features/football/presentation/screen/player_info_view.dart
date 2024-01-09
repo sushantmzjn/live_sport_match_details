@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
 import 'package:sports_app/features/football/presentation/provider/player_info_provider.dart';
 import 'package:sports_app/features/football/presentation/widgets/player_info_tile.dart';
@@ -14,6 +15,8 @@ class PlayerInfoView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final playerInfoData = ref.watch(playerInfoProvider(playerKey));
+    final themeData = ref.watch(themeProvider);
+
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -24,6 +27,7 @@ class PlayerInfoView extends ConsumerWidget {
         data: (data) {
           return RefreshIndicator(
             color: Colors.black,
+            backgroundColor: Colors.white,
             onRefresh: () async {
               ref.invalidate(playerInfoProvider(playerKey));
             },
@@ -35,8 +39,8 @@ class PlayerInfoView extends ConsumerWidget {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 6.w),
                     child: Card(
-                      surfaceTintColor: Colors.white,
-                      color: Colors.white,
+                      surfaceTintColor: themeData.themeData.colorScheme.primary,
+                      color: themeData.themeData.colorScheme.primary,
                       elevation: 3,
                       child: Padding(
                         padding: EdgeInsets.symmetric(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
 import 'package:sports_app/features/tennis/presentation/provider/tennis_live_score_provider.dart';
 
@@ -10,6 +11,8 @@ class TennisLiveScoreView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final liveScoreData = ref.watch(tennisLiveScoreProvider);
+    final themeData = ref.watch(themeProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -46,108 +49,120 @@ class TennisLiveScoreView extends ConsumerWidget {
                     itemCount: liveScoreData.tennisLiveScore.length,
                     itemBuilder: (context, index) {
                       final scoreData = liveScoreData.tennisLiveScore[index];
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 5.w, horizontal: 12.w),
-                        child: GestureDetector(
-                          onTap: () {
-                            // Navigator.of(context)
-                            //     .push(CupertinoPageRoute(builder: (context) {
-                            //   return FootballMatchDetailView(
-                            //       footballLiveScoreResponse: scoreData);
-                            // }));
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            surfaceTintColor: Colors.white,
-                            elevation: 3.w,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 12.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Flexible(
-                                    child: Column(
+                      return scoreData.msg.isNotEmpty
+                          ? Center(
+                              child: Text('Api key expired ${scoreData.msg}'))
+                          : Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5.w, horizontal: 12.w),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Navigator.of(context)
+                                  //     .push(CupertinoPageRoute(builder: (context) {
+                                  //   return FootballMatchDetailView(
+                                  //       footballLiveScoreResponse: scoreData);
+                                  // }));
+                                },
+                                child: Card(
+                                  color:
+                                      themeData.themeData.colorScheme.primary,
+                                  surfaceTintColor:
+                                      themeData.themeData.colorScheme.primary,
+                                  elevation: 3.w,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 12.w),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
                                       children: [
-                                        scoreData.event_first_player_logo
-                                                .trim()
-                                                .isEmpty
-                                            ? Image.asset(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                'assets/icons/football.png')
-                                            : SizedBox(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                child: Image.network(
-                                                  scoreData
-                                                      .event_first_player_logo,
-                                                ),
+                                        Flexible(
+                                          child: Column(
+                                            children: [
+                                              scoreData.event_first_player_logo
+                                                      .trim()
+                                                      .isEmpty
+                                                  ? Image.asset(
+                                                      height: 40.w,
+                                                      width: 40.w,
+                                                      'assets/icons/football.png')
+                                                  : SizedBox(
+                                                      height: 40.w,
+                                                      width: 40.w,
+                                                      child: Image.network(
+                                                        scoreData
+                                                            .event_first_player_logo,
+                                                      ),
+                                                    ),
+                                              SizedBox(
+                                                  width: 60.w,
+                                                  child: Text(
+                                                    scoreData
+                                                        .event_first_player,
+                                                    textAlign: TextAlign.center,
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                        Flexible(
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                scoreData.event_final_result,
+                                                style:
+                                                    TextStyle(fontSize: 16.sp),
                                               ),
-                                        SizedBox(
-                                            width: 60.w,
-                                            child: Text(
-                                              scoreData.event_first_player,
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          scoreData.event_final_result,
-                                          style: TextStyle(fontSize: 16.sp),
+                                              SizedBox(
+                                                height: 10.h,
+                                              ),
+                                              Text(
+                                                'Status : ${scoreData.event_status}',
+                                                style:
+                                                    TextStyle(fontSize: 10.sp),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          'Status : ${scoreData.event_status}',
-                                          style: TextStyle(fontSize: 10.sp),
+                                        Flexible(
+                                          child: Column(
+                                            children: [
+                                              scoreData.event_second_player_logo
+                                                      .trim()
+                                                      .isEmpty
+                                                  ? Image.asset(
+                                                      height: 40.w,
+                                                      width: 40.w,
+                                                      'assets/icons/football.png')
+                                                  : SizedBox(
+                                                      height: 40.w,
+                                                      width: 40.w,
+                                                      child: Image.network(
+                                                        scoreData
+                                                            .event_second_player_logo,
+                                                      ),
+                                                    ),
+                                              SizedBox(
+                                                  width: 60.w,
+                                                  child: Text(
+                                                    scoreData
+                                                        .event_second_player,
+                                                    textAlign: TextAlign.center,
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )),
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),
                                   ),
-                                  Flexible(
-                                    child: Column(
-                                      children: [
-                                        scoreData.event_second_player_logo
-                                                .trim()
-                                                .isEmpty
-                                            ? Image.asset(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                'assets/icons/football.png')
-                                            : SizedBox(
-                                                height: 40.w,
-                                                width: 40.w,
-                                                child: Image.network(
-                                                  scoreData
-                                                      .event_second_player_logo,
-                                                ),
-                                              ),
-                                        SizedBox(
-                                            width: 60.w,
-                                            child: Text(
-                                              scoreData.event_second_player,
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            )),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      );
+                            );
                     },
                   ),
                 ),

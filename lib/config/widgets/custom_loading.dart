@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 
 class CustomCircularLoading extends StatelessWidget {
   const CustomCircularLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Transform.scale(
-            scale: .8.sp,
-            child: CircularProgressIndicator(
-              color: Colors.black,
-              strokeWidth: 3.sp,
-            ),
+    return Consumer(
+      builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        final themeData = ref.watch(themeProvider);
+
+        return Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Transform.scale(
+                scale: .8.sp,
+                child: CircularProgressIndicator(
+                  color: themeData.isDarkMode ? Colors.white : Colors.black,
+                  strokeWidth: 3.sp,
+                ),
+              ),
+              SpinKitDoubleBounce(
+                size: 24.w,
+                color: themeData.isDarkMode ? Colors.white : Colors.black,
+              )
+            ],
           ),
-          SpinKitDoubleBounce(
-            size: 24.w,
-            color: Colors.black,
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

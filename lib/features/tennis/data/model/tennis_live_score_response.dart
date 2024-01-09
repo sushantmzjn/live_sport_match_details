@@ -20,31 +20,35 @@ class TennisLiveScoreResponse {
   String event_first_player_logo;
   String event_second_player_logo;
   List<PointByPoint> pointbypoint;
+  String msg;
 
-  TennisLiveScoreResponse(
-      {required this.event_key,
-      required this.country_name,
-      required this.event_final_result,
-      required this.event_first_player,
-      required this.event_second_player,
-      required this.event_first_player_logo,
-      required this.event_game_result,
-      required this.event_live,
-      required this.event_second_player_logo,
-      required this.event_serve,
-      required this.event_status,
-      required this.event_winner,
-      required this.first_player_key,
-      required this.league_key,
-      required this.league_name,
-      required this.league_round,
-      required this.league_season,
-      required this.second_player_key,
-      required this.pointbypoint});
+  TennisLiveScoreResponse({
+    required this.event_key,
+    required this.country_name,
+    required this.event_final_result,
+    required this.event_first_player,
+    required this.event_second_player,
+    required this.event_first_player_logo,
+    required this.event_game_result,
+    required this.event_live,
+    required this.event_second_player_logo,
+    required this.event_serve,
+    required this.event_status,
+    required this.event_winner,
+    required this.first_player_key,
+    required this.league_key,
+    required this.league_name,
+    required this.league_round,
+    required this.league_season,
+    required this.second_player_key,
+    required this.pointbypoint,
+    required this.msg,
+  });
 
   factory TennisLiveScoreResponse.fromJson(Map<String, dynamic> json) {
     return TennisLiveScoreResponse(
         event_key: json['event_key'] ?? 0,
+        msg: json['msg'] ?? '',
         country_name: json['country_name'] ?? '',
         event_final_result: json['event_final_result'] ?? '',
         event_first_player: json['event_first_player'] ?? '',

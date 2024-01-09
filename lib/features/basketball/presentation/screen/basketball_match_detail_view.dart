@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/features/basketball/data/model/basketball_live_score_response.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_tabbar_pages/basketball_scores.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_tabbar_pages/basketball_statistics.dart';
@@ -96,26 +98,35 @@ class BasketballMatchDetailView extends StatelessWidget {
               length: 2,
               child: Column(
                 children: [
-                  TabBar(
-                    overlayColor: MaterialStateProperty.resolveWith(
-                      (Set states) {
-                        return states.contains(MaterialState.focused)
-                            ? null
-                            : Colors.transparent;
-                      },
-                    ),
-                    labelColor: Colors.black,
-                    indicatorColor: Colors.black,
-                    dividerColor: Colors.transparent,
-                    unselectedLabelColor: Colors.grey,
-                    tabs: const [
-                      Tab(
-                        text: 'Statistics',
-                      ),
-                      Tab(
-                        text: 'Scores',
-                      ),
-                    ],
+                  Consumer(
+                    builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
+                      final themeData = ref.watch(themeProvider);
+
+                      return TabBar(
+                        overlayColor: MaterialStateProperty.resolveWith(
+                          (Set states) {
+                            return states.contains(MaterialState.focused)
+                                ? null
+                                : Colors.transparent;
+                          },
+                        ),
+                        labelColor:
+                            themeData.isDarkMode ? Colors.white : Colors.black,
+                        indicatorColor:
+                            themeData.isDarkMode ? Colors.white : Colors.black,
+                        dividerColor: Colors.transparent,
+                        unselectedLabelColor: Colors.grey,
+                        tabs: const [
+                          Tab(
+                            text: 'Statistics',
+                          ),
+                          Tab(
+                            text: 'Scores',
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   Expanded(
                     child: TabBarView(children: [

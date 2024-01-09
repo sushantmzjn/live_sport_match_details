@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 import 'package:sports_app/features/football/presentation/provider/team_info_provider.dart';
@@ -20,6 +21,7 @@ class TeamInfoView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final teamData = ref.watch(teamInfoProvider(teamId));
+    final themeData = ref.watch(themeProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -106,8 +108,10 @@ class TeamInfoView extends ConsumerWidget {
                                             }));
                                           },
                                           child: Card(
-                                            color: Colors.white,
-                                            surfaceTintColor: Colors.white,
+                                            color: themeData
+                                                .themeData.colorScheme.primary,
+                                            surfaceTintColor: themeData
+                                                .themeData.colorScheme.primary,
                                             elevation: 2.w,
                                             child: Padding(
                                               padding: EdgeInsets.all(10.w),

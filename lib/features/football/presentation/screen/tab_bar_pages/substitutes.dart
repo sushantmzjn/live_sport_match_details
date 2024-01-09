@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 
-class SubstitutesView extends StatelessWidget {
+class SubstitutesView extends ConsumerWidget {
   final FootballLiveScoreResponse footballData;
   const SubstitutesView({super.key, required this.footballData});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final themeData = ref.watch(themeProvider);
+
     return footballData.substitutes.isEmpty
         ? const Center(
             child: Text('No Data Available'),
@@ -20,8 +24,8 @@ class SubstitutesView extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 2.w),
                 child: Card(
-                  color: Colors.white,
-                  surfaceTintColor: Colors.white,
+                  color: themeData.themeData.colorScheme.primary,
+                  surfaceTintColor: themeData.themeData.colorScheme.primary,
                   elevation: 3.w,
                   child: Padding(
                     padding:

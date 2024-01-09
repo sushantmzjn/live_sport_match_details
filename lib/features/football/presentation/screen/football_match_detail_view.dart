@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/foul_card.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/score_view.dart';
@@ -123,32 +125,40 @@ class FootballMatchDetailView extends StatelessWidget {
               length: 4,
               child: Column(
                 children: [
-                  TabBar(
-                    overlayColor: MaterialStateProperty.resolveWith(
-                      (Set states) {
-                        return states.contains(MaterialState.focused)
-                            ? null
-                            : Colors.transparent;
-                      },
-                    ),
-                    labelColor: Colors.black,
-                    indicatorColor: Colors.black,
-                    dividerColor: Colors.transparent,
-                    unselectedLabelColor: Colors.grey,
-                    tabs: const [
-                      Tab(
-                        text: 'Statistics',
-                      ),
-                      Tab(
-                        text: 'Goal Scores',
-                      ),
-                      Tab(
-                        text: 'Substitutes',
-                      ),
-                      Tab(
-                        text: 'Card',
-                      ),
-                    ],
+                  Consumer(
+                    builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
+                      final themeData = ref.watch(themeProvider);
+                      return TabBar(
+                        overlayColor: MaterialStateProperty.resolveWith(
+                          (Set states) {
+                            return states.contains(MaterialState.focused)
+                                ? null
+                                : Colors.transparent;
+                          },
+                        ),
+                        labelColor:
+                            themeData.isDarkMode ? Colors.white : Colors.black,
+                        indicatorColor:
+                            themeData.isDarkMode ? Colors.white : Colors.black,
+                        dividerColor: Colors.transparent,
+                        unselectedLabelColor: Colors.grey,
+                        tabs: const [
+                          Tab(
+                            text: 'Statistics',
+                          ),
+                          Tab(
+                            text: 'Goal Scores',
+                          ),
+                          Tab(
+                            text: 'Substitutes',
+                          ),
+                          Tab(
+                            text: 'Card',
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   Expanded(
                     child: TabBarView(children: [

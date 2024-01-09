@@ -17,24 +17,27 @@ class BasketballLiveScoreResponse {
   String event_away_team_logo;
   Scores scores;
   List<Statistics> statistics;
+  String msg;
 
-  BasketballLiveScoreResponse(
-      {required this.event_key,
-      required this.event_date,
-      required this.event_time,
-      required this.event_home_team,
-      required this.event_away_team,
-      required this.country_name,
-      required this.league_name,
-      required this.league_key,
-      required this.league_season,
-      required this.event_quarter,
-      required this.event_status,
-      required this.event_final_result,
-      required this.event_away_team_logo,
-      required this.event_home_team_logo,
-      required this.scores,
-      required this.statistics});
+  BasketballLiveScoreResponse({
+    required this.event_key,
+    required this.event_date,
+    required this.event_time,
+    required this.event_home_team,
+    required this.event_away_team,
+    required this.country_name,
+    required this.league_name,
+    required this.league_key,
+    required this.league_season,
+    required this.event_quarter,
+    required this.event_status,
+    required this.event_final_result,
+    required this.event_away_team_logo,
+    required this.event_home_team_logo,
+    required this.scores,
+    required this.statistics,
+    required this.msg,
+  });
 
   factory BasketballLiveScoreResponse.fromJson(Map<String, dynamic> json) {
     return BasketballLiveScoreResponse(
@@ -53,6 +56,7 @@ class BasketballLiveScoreResponse {
       event_away_team_logo: json['event_away_team_logo'] ?? '',
       event_home_team_logo: json['event_home_team_logo'] ?? '',
       scores: Scores.fromJson(json['scores'] ?? {}),
+      msg: json['msg'] ?? '',
       statistics: (json['statistics']) != null
           ? List<Statistics>.from(
               json['statistics'].map((e) => Statistics.fromJson(e)))

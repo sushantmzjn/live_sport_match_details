@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 String baseUrl = 'https://apiv2.allsportsapi.com/';
 String apiKey =
-    '633b98659e3ed157fca9d28ed2f9cf93374b71f8a0dc06ae1a8545be3374914b';
+    'ea86e87ffd29e5d2b180c85640db6c2f880d75fd66ad86f2dbcc8519d52e7605';
 
 class API {
   static Dio dio = Dio();
