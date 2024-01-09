@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
+import 'package:sports_app/config/widgets/custom_divider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
 import 'package:sports_app/features/football/presentation/provider/player_info_provider.dart';
 import 'package:sports_app/features/football/presentation/widgets/player_info_tile.dart';
@@ -80,80 +81,47 @@ class PlayerInfoView extends ConsumerWidget {
                             PlayerInfoTile(
                                 title: 'Player Name',
                                 subTitle: playerData.player_name),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Age',
                                 subTitle: playerData.player_age),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Number',
                                 subTitle: playerData.player_number),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Country',
                                 subTitle: playerData.player_country),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Type',
                                 subTitle: playerData.player_type),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Matched Played',
                                 subTitle: playerData.player_match_played),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Goals',
                                 subTitle: playerData.player_goals),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Yellow Cards',
                                 subTitle: playerData.player_yellow_cards),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Red Cards',
                                 subTitle: playerData.player_red_cards),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Penalty Scoreed',
                                 subTitle: playerData.player_pen_scored),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Passes Accuracy',
                                 subTitle: playerData.player_passes_accuracy),
-                            Divider(
-                              color: Colors.black.withOpacity(0.2),
-                              thickness: 0.8.w,
-                            ),
+                            const CustomDivider(),
                             PlayerInfoTile(
                                 title: 'Player Rating',
                                 subTitle: playerData.player_rating),

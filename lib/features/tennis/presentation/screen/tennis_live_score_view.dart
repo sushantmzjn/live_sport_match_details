@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
+import 'package:sports_app/config/widgets/custom_switch.dart';
 import 'package:sports_app/features/tennis/presentation/provider/tennis_live_score_provider.dart';
 
 class TennisLiveScoreView extends ConsumerWidget {
@@ -22,14 +23,19 @@ class TennisLiveScoreView extends ConsumerWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 4.sp),
-            child: IconButton(
-              onPressed: () async {
-                ref.invalidate(tennisLiveScoreProvider);
-              },
-              icon: Icon(
-                Icons.refresh,
-                size: 25.sp,
-              ),
+            child: Row(
+              children: [
+                const CustomSwitch(),
+                IconButton(
+                  onPressed: () async {
+                    ref.invalidate(tennisLiveScoreProvider);
+                  },
+                  icon: Icon(
+                    Icons.refresh,
+                    size: 25.sp,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
+import 'package:sports_app/config/widgets/custom_divider.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/foul_card.dart';
 import 'package:sports_app/features/football/presentation/screen/tab_bar_pages/score_view.dart';
@@ -116,10 +117,7 @@ class FootballMatchDetailView extends StatelessWidget {
               )
             ],
           ),
-          Divider(
-            color: Colors.black12,
-            thickness: 0.8.w,
-          ),
+          const CustomDivider(),
           Expanded(
             child: DefaultTabController(
               length: 4,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_app/config/widgets/custom_divider.dart';
 import 'package:sports_app/features/basketball/data/model/basketball_live_score_response.dart';
 
 class BasketballStatistics extends StatelessWidget {
@@ -55,10 +56,7 @@ class BasketballStatistics extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(
-                            color: Colors.black.withOpacity(0.2),
-                            thickness: 0.8.w,
-                          ),
+                          const CustomDivider(),
                         ],
                       );
                     },

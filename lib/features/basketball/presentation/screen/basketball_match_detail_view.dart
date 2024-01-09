@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
+import 'package:sports_app/config/widgets/custom_divider.dart';
 import 'package:sports_app/features/basketball/data/model/basketball_live_score_response.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_tabbar_pages/basketball_scores.dart';
 import 'package:sports_app/features/basketball/presentation/screen/basketball_tabbar_pages/basketball_statistics.dart';
@@ -89,10 +90,7 @@ class BasketballMatchDetailView extends StatelessWidget {
               )
             ],
           ),
-          Divider(
-            color: Colors.black12,
-            thickness: 0.8.w,
-          ),
+          const CustomDivider(),
           Expanded(
             child: DefaultTabController(
               length: 2,

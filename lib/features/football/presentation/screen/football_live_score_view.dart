@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
 import 'package:sports_app/config/widgets/custom_loading.dart';
+import 'package:sports_app/config/widgets/custom_switch.dart';
 import 'package:sports_app/features/football/presentation/provider/football_live_score_provider.dart';
 import 'package:sports_app/features/football/presentation/screen/football_match_detail_view.dart';
 
@@ -26,33 +27,7 @@ class FootballLiveScoreView extends ConsumerWidget {
             padding: EdgeInsets.only(right: 4.sp),
             child: Row(
               children: [
-                Text('Theme', style: TextStyle(fontSize: 16.sp)),
-                Transform.scale(
-                  scale: 0.85,
-                  child: Switch(
-                    activeColor: Colors.transparent,
-                    inactiveThumbColor: const Color.fromRGBO(0, 0, 0, 0),
-                    activeTrackColor: Colors.white,
-                    thumbColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.disabled)) {
-                        return Colors.white.withOpacity(.48);
-                      }
-                      return Colors.white;
-                    }),
-                    activeThumbImage: const AssetImage('assets/icons/dark.png'),
-                    inactiveThumbImage:
-                        const AssetImage('assets/icons/light.png'),
-                    value: themeData.isDarkMode,
-                    onChanged: (value) {
-                      // setState(() {
-                      //   isDarkModeEnabled = value;
-                      //   saveDarkModeSetting(value);
-                      // });
-                      ref.read(themeProvider.notifier).toggleTheme();
-                    },
-                  ),
-                ),
+                const CustomSwitch(),
                 IconButton(
                   onPressed: () async {
                     ref.invalidate(footballLiveScoreDataProvider);

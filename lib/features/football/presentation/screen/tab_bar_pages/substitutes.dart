@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_app/config/theme/theme_provider.dart';
+import 'package:sports_app/config/widgets/custom_divider.dart';
 import 'package:sports_app/features/football/data/model/football_live_score_response.dart';
 
 class SubstitutesView extends ConsumerWidget {
@@ -53,10 +54,7 @@ class SubstitutesView extends ConsumerWidget {
                             substitutesData.homeSubstitutes.homeOut
                                 .trim()
                                 .isNotEmpty)
-                          Divider(
-                            color: Colors.black.withOpacity(0.2),
-                            thickness: 0.8.w,
-                          ),
+                          const CustomDivider(),
                         if (substitutesData.homeSubstitutes.homeOut
                             .trim()
                             .isNotEmpty)
@@ -93,10 +91,7 @@ class SubstitutesView extends ConsumerWidget {
                             substitutesData.awaySubstitutes.awayOut
                                 .trim()
                                 .isNotEmpty)
-                          Divider(
-                            color: Colors.black.withOpacity(0.2),
-                            thickness: 0.8.w,
-                          ),
+                          const CustomDivider(),
                         if (substitutesData.awaySubstitutes.awayOut
                             .trim()
                             .isNotEmpty)
